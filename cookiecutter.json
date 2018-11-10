@@ -1,5 +1,6 @@
 {
   "project_name": "Offical Project Name™",
+  "scraper_name": "Name of scraper",
   "description": "A short description of the project",
   "repo_name": "repo_name",
   "database": "database_name"

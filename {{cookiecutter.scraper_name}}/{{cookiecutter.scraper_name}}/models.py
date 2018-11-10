@@ -1,19 +1,12 @@
-# -*- coding: utf-8 -*-
-
-"""
-Models to store scraped data in a database.
-"""
-
 import inspect
 
 from peewee import SqliteDatabase, Model
 from peewee import CompositeKey, FloatField, IntegerField, TextField
 
+db = SqliteDatabase('{{cookiecutter.database}}.db')
 
-db = SqliteDatabase("{{cookiecutter.database}}.db", threadlocals=True)
 
-
-class BaseModel(Model):
+class BaseScrapingModel(Model):
     class Meta:
         database = db
 
@@ -45,7 +38,7 @@ class BaseModel(Model):
 # Example Models
 # ----------------------------------------------------------------------------
 
-class City(BaseModel):
+class City(BaseScrapingModel):
     name = TextField()
     state = TextField()
 
@@ -54,23 +47,16 @@ class City(BaseModel):
         indexes = [(("name", "state"), True)]
         primary_key = CompositeKey("name", "state")
 
-
-class Restaurant(BaseModel):
-    name = TextField()
-
-    class Meta:
-        db_table = "restaurants"
-
-
 # ----------------------------------------------------------------------------
 # Automatically create the tables...
 # ----------------------------------------------------------------------------
 
+
 def create_tables():
     models = []
     for name, cls in globals().items():
-        if inspect.isclass(cls) and issubclass(cls, BaseModel):
-            if name == "BaseModel":
+        if inspect.isclass(cls) and issubclass(cls, BaseScrapingModel):
+            if name == "BaseScrapingModel":
                 continue
             models.append(cls)
     db.create_tables(models, safe=True)

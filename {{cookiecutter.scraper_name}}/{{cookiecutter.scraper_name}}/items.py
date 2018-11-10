@@ -11,7 +11,7 @@ from scrapy import Item, Field
 from scrapy.loader import ItemLoader
 from scrapy.loader.processors import MapCompose, TakeFirst
 
-from {{cookiecutter.repo_name}} import models
+from {{cookiecutter.scraper_name}} import models
 
 
 # ----------------------------------------------------------------------------

@@ -8,7 +8,7 @@ from scrapy import Request
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 
-from {{cookiecutter.repo_name}}.items import DefaultLoader
+from {{cookiecutter.scraper_name}}.items import DefaultLoader
 
 
 class ExampleSpider(CrawlSpider):

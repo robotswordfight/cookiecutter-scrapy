@@ -11,7 +11,7 @@ from scrapy import Item, Field
 from scrapy.loader import ItemLoader
 from scrapy.loader.processors import MapCompose, TakeFirst
 
-from {{cookiecutter.scraper_name}} import models
+from ebay import models
 
 
 # ----------------------------------------------------------------------------
@@ -95,11 +95,8 @@ class ModelItem(Item):
 # ----------------------------------------------------------------------------
 
 class City(ModelItem):
-    __model__ = models.City
-
-    class Meta:
-        name = title_check
+    pass
 
 
 class Restaurant(ModelItem):
-    __model__ = models.Restaurant
+    pass
